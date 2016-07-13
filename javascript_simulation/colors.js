@@ -8,7 +8,7 @@ var colors = [
   // 'Bisque',
   // 'Black',
   // 'BlanchedAlmond',
-  // 'Blue',
+  'Blue',
   'BlueViolet',
   'Brown',
   'BurlyWood',
