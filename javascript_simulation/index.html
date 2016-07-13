@@ -4,23 +4,46 @@
         <script src='hoop.js'></script>
     </head>
     <body>
+        <div style="
+            background-color: red;
+            width: 5px;
+            height: 5px;
+            position: absolute;
+            margin-left: 400px;
+            margin-top: 400px;
+            border-radius: 20px;
+            ">
+        </div>
         <div id='content'></div>
 
         <script type='text/javascript'>
             var sampleSVG = d3.select('#content')
                 .append('svg')
-                .attr('width', 1800)
-                .attr('height', 1800);
+                .attr('width', 3000)
+                .attr('height', 3000);
 
-            var f = true;
+            var radius = 20;
+            var centralX = 400;
+            var centralY = 400-radius;
+
+            var points = initialCirclePoints(radius);
+
+            var rotationDegrees = 0;
 
             function loop() {
-                f = !f;
-                drawHoop(sampleSVG, f ? 'red' : 'blue');
-                setTimeout(loop, 300);
+                console.log(rotationDegrees);
+
+                points = rotatePoints(centralX, centralY, points, rotationDegrees);
+                drawHoop(points, centralX, centralY, sampleSVG, 'black');
+                rotationDegrees += 1;
+
+//                setTimeout(loop, 300);
             }
 
             loop();
+            setTimeout(loop, 1000);
+//            setTimeout(loop, 2000);
+//            setTimeout(loop, 3000);
         </script>
     </body>
 </html>
