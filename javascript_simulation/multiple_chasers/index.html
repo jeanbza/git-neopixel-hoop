@@ -22,7 +22,7 @@
     var centralX = circleRotation;
     var centralY = circleRotation;
     var offsetX = 400;
-    var offsetY = 400;
+    var offsetY = 300;
 
     // Mutables
     var initialPoints = initialCirclePoints(radius, numPoints);
@@ -36,7 +36,7 @@
         drawHoop(points, offsetX, offsetY, sampleSVG);
         rotationDegrees += 5;
 
-        setTimeout(spinHoop, 8);
+        setTimeout(spinHoop, 1);
     };
     spinHoop();
 
