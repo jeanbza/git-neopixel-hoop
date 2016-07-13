@@ -1,46 +1,13 @@
 <html>
     <head>
         <script src='d3/d3.js'></script>
-        <script src='hoop_math.js'></script>
+        <script src='math.js'></script>
         <script src='colors.js'></script>
-        <script src='color_algorithms.js'></script>
+        <script src='single_chaser/color_algorithms.js'></script>
         <script src='hoop.js'></script>
     </head>
     <body>
-        <div id='content'></div>
-
-        <script type='text/javascript'>
-            var sampleSVG = d3.select('#content')
-                .append('svg')
-                .attr('width', 3000)
-                .attr('height', 3000);
-
-            // Constants
-            var numPoints = 120;
-            var radius = 200;
-            var circleRotation = 80;
-            var centralX = circleRotation;
-            var centralY = circleRotation;
-            var offsetX = 400;
-            var offsetY = 400;
-
-            // Mutables
-            var initialPoints = initialCirclePoints(radius, numPoints);
-            var rotationDegrees = 0;
-            var currentColorIndex = 0;
-
-            drawInitialHoop(initialPoints, offsetX, offsetY, sampleSVG);
-
-            function spinHoop() {
-                var points = rotatePoints(centralX, centralY, initialPoints, rotationDegrees);
-                drawHoop(points, offsetX, offsetY, sampleSVG);
-                rotationDegrees += 5;
-
-                setTimeout(spinHoop, 8);
-            };
-            spinHoop();
-
-            colorStrip(sampleSVG, numPoints);
-        </script>
+        <div><a href="single_chaser/index.html">single chaser</a></div>
+        <div><a href="multiple_chasers/index.html">multiple chasers</a></div>
     </body>
 </html>
