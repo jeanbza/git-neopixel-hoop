@@ -2,7 +2,7 @@
     <head>
         <script src='d3/d3.js'></script>
         <script src='colors.js'></script>
-        <script src='color_algorithms.js'></script>
+        <script src='color_algorithms.es6'></script>
         <script src='hoop.js'></script>
     </head>
     <body>
@@ -27,23 +27,17 @@
             var initialPoints = initialCirclePoints(radius, numPoints);
             var rotationDegrees = 0;
             var currentColorIndex = 0;
-            var colorStrip = getInitialStrip(120);
 
             function spinHoop() {
                 var points = rotatePoints(centralX, centralY, initialPoints, rotationDegrees);
-                drawHoop(points, colorStrip, offsetX, offsetY, sampleSVG);
+                drawHoop(points, offsetX, offsetY, sampleSVG);
 //                rotationDegrees += 5;
 
-                setTimeout(spinHoop, 8);
+//                setTimeout(spinHoop, 8);
             };
             spinHoop();
 
-            function changeColors() {
-                colorStrip = getColorStrip(numPoints);
-//                setTimeout(changeColors, 500);
-            }
-            changeColors();
-            setTimeout(changeColors, 500);
+            colorStrip(sampleSVG, numPoints);
         </script>
     </body>
 </html>

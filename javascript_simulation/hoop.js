@@ -1,7 +1,6 @@
 // http://formulas.tutorvista.com/math/degrees-to-radians-formula.html
 function degreesToRadians(degrees) {
-  var radians = degrees * Math.PI / 180;
-  return radians;
+  return degrees * Math.PI / 180;
 }
 
 // http://stackoverflow.com/questions/5300938/calculating-the-position-of-points-in-a-circle
@@ -10,8 +9,10 @@ function initialCirclePoints(radius, numPoints) {
   var thetaDelta = 360 / numPoints;
 
   for (var theta = 0; theta < 360; theta += thetaDelta) {
-    var x = radius * Math.sin(theta);
-    var y = radius * Math.cos(theta);
+    var thetaRadians = degreesToRadians(theta);
+
+    var x = radius * Math.sin(thetaRadians);
+    var y = radius * Math.cos(thetaRadians);
 
     points.push({'index': theta / thetaDelta, 'cx': x, 'cy': y});
   }
@@ -46,17 +47,17 @@ function rotatePoints(centralX, centralY, points, rotationDegrees) {
   return newPoints;
 }
 
-function drawHoop(points, colorStrip, offsetX, offsetY, svg) {
+function drawHoop(points, offsetX, offsetY, svg) {
   svg.selectAll('circle').remove();
 
   svg.selectAll('circle')
     .data(points)
     .enter()
     .append('circle')
-    .style('fill', function (i) {
-      return colorStrip[i.index]
-    })
     .attr('r', 5)
+    .attr('index', function(i) {
+      return i.index
+    })
     .attr('cx', function (i) {
       return i.cx + offsetX
     })
