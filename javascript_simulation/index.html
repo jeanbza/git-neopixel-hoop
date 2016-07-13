@@ -32,16 +32,18 @@
             function spinHoop() {
                 var points = rotatePoints(centralX, centralY, initialPoints, rotationDegrees);
                 drawHoop(points, colorStrip, offsetX, offsetY, sampleSVG);
-                rotationDegrees += 5;
+//                rotationDegrees += 5;
 
                 setTimeout(spinHoop, 8);
             };
             spinHoop();
 
             function changeColors() {
-                setTimeout(changeColors, 5);
+                colorStrip = getColorStrip(numPoints);
+//                setTimeout(changeColors, 500);
             }
             changeColors();
+            setTimeout(changeColors, 500);
         </script>
     </body>
 </html>

@@ -53,11 +53,10 @@ function drawHoop(points, colorStrip, offsetX, offsetY, svg) {
     .data(points)
     .enter()
     .append('circle')
-    .style('stroke', 'gray')
     .style('fill', function (i) {
       return colorStrip[i.index]
     })
-    .attr('r', 2)
+    .attr('r', 5)
     .attr('cx', function (i) {
       return i.cx + offsetX
     })

@@ -10,10 +10,10 @@ function getInitialStrip(stripLength) {
 
 function getColorStrip(stripLength) {
   var newStrip = [];
-  
-  for (var i = 0; i < 6; i++) {
-    for (var j = 0; j < stripLength / 6; j++) {
-      // strip[]
+
+  for (var j = 0; j < 6; j++) {
+    for (var i = 0; i < stripLength / 6; i++) {
+      newStrip[i * 6 + j] = colors[currentColorIndex];
     }
   }
 
