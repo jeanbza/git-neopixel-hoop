@@ -20,11 +20,6 @@ function initialCirclePoints(radius) {
 
 // http://math.stackexchange.com/questions/814950/how-can-i-rotate-a-coordinate-around-a-circle
 function rotatePoint(centralPointX, centralPointY, currentPointX, currentPointY, rotationDegree) {
-  /*
-   xrot=cos(θ)⋅(x−cx)−sin(θ)⋅(y−cy)+cx
-   yrot=sin(θ)⋅(x−cx)+cos(θ)⋅(y−cy)+cy
-   */
-
   var rotationRadian = degreesToRadians(rotationDegree);
 
   var newX = Math.cos(rotationRadian) * (currentPointX - centralPointX)
@@ -34,7 +29,7 @@ function rotatePoint(centralPointX, centralPointY, currentPointX, currentPointY,
   var newY = Math.sin(rotationRadian) * (currentPointX - centralPointX)
     + Math.cos(rotationRadian) * (currentPointY - centralPointY)
     + centralPointY;
-  
+
   return {'cx': newX, 'cy': newY};
 }
 
@@ -50,7 +45,7 @@ function rotatePoints(centralX, centralY, points, rotationDegrees) {
   return newPoints;
 }
 
-function drawHoop(points, xOffset, yOffset, svg, color) {
+function drawHoop(points, offsetX, offsetY, svg, color) {
   svg.selectAll('circle').remove();
 
   svg.selectAll('circle')
@@ -61,9 +56,9 @@ function drawHoop(points, xOffset, yOffset, svg, color) {
     .style('fill', color)
     .attr('r', 2)
     .attr('cx', function (i) {
-      return i.cx + xOffset
+      return i.cx + offsetX
     })
     .attr('cy', function (i) {
-      return i.cy + yOffset
+      return i.cy + offsetY
     });
 }

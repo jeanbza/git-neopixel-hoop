@@ -4,16 +4,6 @@
         <script src='hoop.js'></script>
     </head>
     <body>
-        <div style="
-            background-color: red;
-            width: 5px;
-            height: 5px;
-            position: absolute;
-            margin-left: 400px;
-            margin-top: 400px;
-            border-radius: 20px;
-            ">
-        </div>
         <div id='content'></div>
 
         <script type='text/javascript'>
@@ -22,9 +12,11 @@
                 .attr('width', 3000)
                 .attr('height', 3000);
 
-            var radius = 50;
-            var centralX = 400;
-            var centralY = 400-radius;
+            var radius = 150;
+            var centralX = 40;
+            var centralY = 40;
+            var offsetX = 400;
+            var offsetY = 400;
 
             var points = initialCirclePoints(radius);
 
@@ -32,11 +24,11 @@
 
             function loop() {
                 points = rotatePoints(centralX, centralY, points, rotationDegrees);
-                drawHoop(points, centralX, centralY, sampleSVG, 'black');
+                drawHoop(points, offsetX, offsetY, sampleSVG, 'black');
                 rotationDegrees += 1;
 
-                setTimeout(loop, 300);
-            }
+                setTimeout(loop, 50);
+            };
 
             loop();
         </script>
