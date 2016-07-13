@@ -12,9 +12,10 @@
                 .attr('width', 3000)
                 .attr('height', 3000);
 
-            var radius = 150;
-            var centralX = 40;
-            var centralY = 40;
+            var radius = 200;
+            var circleRotation = 80;
+            var centralX = circleRotation;
+            var centralY = circleRotation;
             var offsetX = 400;
             var offsetY = 400;
 
@@ -27,7 +28,7 @@
                 drawHoop(points, offsetX, offsetY, sampleSVG, 'black');
                 rotationDegrees += 5;
 
-                setTimeout(loop, 50);
+                setTimeout(loop, 8);
             };
 
             loop();
