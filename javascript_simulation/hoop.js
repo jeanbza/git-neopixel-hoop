@@ -15,9 +15,7 @@ function initialCirclePoints(radius, numPoints) {
   return points;
 }
 
-function drawHoop(points, offsetX, offsetY, svg) {
-  svg.selectAll('circle').remove();
-
+function drawInitialHoop(points, offsetX, offsetY, svg) {
   svg.selectAll('circle')
     .data(points)
     .enter()
@@ -32,4 +30,14 @@ function drawHoop(points, offsetX, offsetY, svg) {
     .attr('cy', function (i) {
       return i.cy + offsetY
     });
+}
+
+function drawHoop(points, offsetX, offsetY, svg) {
+  var circles = d3.select('#content').selectAll('circle')._groups[0]
+
+  for (var i = 0; i < circles.length; i++) {
+    d3.select(d3.select('#content').selectAll('circle')._groups[0][i])
+      .attr('cx', points[i].cx + offsetX)
+      .attr('cy', points[i].cy + offsetY);
+  }
 }

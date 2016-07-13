@@ -29,12 +29,14 @@
             var rotationDegrees = 0;
             var currentColorIndex = 0;
 
+            drawInitialHoop(initialPoints, offsetX, offsetY, sampleSVG);
+
             function spinHoop() {
                 var points = rotatePoints(centralX, centralY, initialPoints, rotationDegrees);
                 drawHoop(points, offsetX, offsetY, sampleSVG);
-//                rotationDegrees += 5;
+                rotationDegrees += 5;
 
-//                setTimeout(spinHoop, 8);
+                setTimeout(spinHoop, 8);
             };
             spinHoop();
 
