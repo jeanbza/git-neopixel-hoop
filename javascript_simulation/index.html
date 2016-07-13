@@ -18,14 +18,14 @@
             var offsetX = 400;
             var offsetY = 400;
 
-            var points = initialCirclePoints(radius);
+            var initialPoints = initialCirclePoints(radius);
 
             var rotationDegrees = 0;
 
             function loop() {
-                points = rotatePoints(centralX, centralY, points, rotationDegrees);
+                var points = rotatePoints(centralX, centralY, initialPoints, rotationDegrees);
                 drawHoop(points, offsetX, offsetY, sampleSVG, 'black');
-                rotationDegrees += 1;
+                rotationDegrees += 5;
 
                 setTimeout(loop, 50);
             };

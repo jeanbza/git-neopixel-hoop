@@ -1,6 +1,6 @@
 // http://formulas.tutorvista.com/math/degrees-to-radians-formula.html
 function degreesToRadians(degrees) {
-  var radians = (degrees * Math.PI) / 180;
+  var radians = degrees * Math.PI / 180;
   return radians;
 }
 
