@@ -22,7 +22,7 @@
                 .attr('width', 3000)
                 .attr('height', 3000);
 
-            var radius = 20;
+            var radius = 50;
             var centralX = 400;
             var centralY = 400-radius;
 
@@ -31,19 +31,14 @@
             var rotationDegrees = 0;
 
             function loop() {
-                console.log(rotationDegrees);
-
                 points = rotatePoints(centralX, centralY, points, rotationDegrees);
                 drawHoop(points, centralX, centralY, sampleSVG, 'black');
                 rotationDegrees += 1;
 
-//                setTimeout(loop, 300);
+                setTimeout(loop, 300);
             }
 
             loop();
-            setTimeout(loop, 1000);
-//            setTimeout(loop, 2000);
-//            setTimeout(loop, 3000);
         </script>
     </body>
 </html>
