@@ -1,6 +1,8 @@
 <html>
     <head>
         <script src='d3/d3.js'></script>
+        <script src='colors.js'></script>
+        <script src='color_algorithms.js'></script>
         <script src='hoop.js'></script>
     </head>
     <body>
@@ -12,6 +14,8 @@
                 .attr('width', 3000)
                 .attr('height', 3000);
 
+            // Constants
+            var numPoints = 120;
             var radius = 200;
             var circleRotation = 80;
             var centralX = circleRotation;
@@ -19,19 +23,25 @@
             var offsetX = 400;
             var offsetY = 400;
 
-            var initialPoints = initialCirclePoints(radius);
-
+            // Mutables
+            var initialPoints = initialCirclePoints(radius, numPoints);
             var rotationDegrees = 0;
+            var currentColorIndex = 0;
+            var colorStrip = getInitialStrip(120);
 
-            function loop() {
+            function spinHoop() {
                 var points = rotatePoints(centralX, centralY, initialPoints, rotationDegrees);
-                drawHoop(points, offsetX, offsetY, sampleSVG, 'black');
+                drawHoop(points, colorStrip, offsetX, offsetY, sampleSVG);
                 rotationDegrees += 5;
 
-                setTimeout(loop, 8);
+                setTimeout(spinHoop, 8);
             };
+            spinHoop();
 
-            loop();
+            function changeColors() {
+                setTimeout(changeColors, 5);
+            }
+            changeColors();
         </script>
     </body>
 </html>

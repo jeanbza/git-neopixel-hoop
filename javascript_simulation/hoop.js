@@ -5,32 +5,33 @@ function degreesToRadians(degrees) {
 }
 
 // http://stackoverflow.com/questions/5300938/calculating-the-position-of-points-in-a-circle
-function initialCirclePoints(radius) {
-  points = [];
+function initialCirclePoints(radius, numPoints) {
+  var points = [];
+  var thetaDelta = 360 / numPoints;
 
-  for (var theta = 0; theta < 360; theta += 3) {
+  for (var theta = 0; theta < 360; theta += thetaDelta) {
     var x = radius * Math.sin(theta);
     var y = radius * Math.cos(theta);
 
-    points.push({'cx': x, 'cy': y});
+    points.push({'index': theta / thetaDelta, 'cx': x, 'cy': y});
   }
 
   return points;
 }
 
 // http://math.stackexchange.com/questions/814950/how-can-i-rotate-a-coordinate-around-a-circle
-function rotatePoint(centralPointX, centralPointY, currentPointX, currentPointY, rotationDegree) {
+function rotatePoint(centralPointX, centralPointY, point, rotationDegree) {
   var rotationRadian = degreesToRadians(rotationDegree);
 
-  var newX = Math.cos(rotationRadian) * (currentPointX - centralPointX)
-    - Math.sin(rotationRadian) * (currentPointY - centralPointY)
+  var newX = Math.cos(rotationRadian) * (point.cx - centralPointX)
+    - Math.sin(rotationRadian) * (point.cy - centralPointY)
     + centralPointX;
 
-  var newY = Math.sin(rotationRadian) * (currentPointX - centralPointX)
-    + Math.cos(rotationRadian) * (currentPointY - centralPointY)
+  var newY = Math.sin(rotationRadian) * (point.cx - centralPointX)
+    + Math.cos(rotationRadian) * (point.cy - centralPointY)
     + centralPointY;
 
-  return {'cx': newX, 'cy': newY};
+  return {'index': point.index, 'cx': newX, 'cy': newY};
 }
 
 function rotatePoints(centralX, centralY, points, rotationDegrees) {
@@ -38,14 +39,14 @@ function rotatePoints(centralX, centralY, points, rotationDegrees) {
 
   for (var i = 0; i < points.length; i++) {
     var point = points[i];
-    var newPoint = rotatePoint(centralX, centralY, point.cx, point.cy, rotationDegrees);
+    var newPoint = rotatePoint(centralX, centralY, point, rotationDegrees);
     newPoints.push(newPoint);
   }
 
   return newPoints;
 }
 
-function drawHoop(points, offsetX, offsetY, svg, color) {
+function drawHoop(points, colorStrip, offsetX, offsetY, svg) {
   svg.selectAll('circle').remove();
 
   svg.selectAll('circle')
@@ -53,7 +54,9 @@ function drawHoop(points, offsetX, offsetY, svg, color) {
     .enter()
     .append('circle')
     .style('stroke', 'gray')
-    .style('fill', color)
+    .style('fill', function (i) {
+      return colorStrip[i.index]
+    })
     .attr('r', 2)
     .attr('cx', function (i) {
       return i.cx + offsetX
