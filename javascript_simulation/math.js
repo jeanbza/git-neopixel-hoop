@@ -33,3 +33,7 @@ function degreesToRadians(degrees) {
 function randomNumberBetween(start, end) {
   return Math.floor((Math.random() * end) + start)
 }
+
+function decimalToHex(decimalNumber) {
+  return decimalNumber.toString(16)
+}
